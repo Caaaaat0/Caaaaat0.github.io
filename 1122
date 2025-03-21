@@ -1,0 +1,81 @@
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+
+const InspectionInfo = () => {
+  const sections = [
+    {
+      title: "環保局",
+      color: "bg-red-100",
+      points: ["提高管理效率", "數據分析與報告"],
+      questions: [
+        "對我統計這個月全市不同不合格機車數量",
+        "是否有需要關注的問題檢測站？",
+      ],
+    },
+    {
+      title: "一般民眾",
+      color: "bg-yellow-100",
+      points: ["提供查詢服務", "透明的環保資訊"],
+      questions: [
+        "我看到引擎異常，幫我檢車車號ABC-123機車",
+        "機車定檢的費用是多少？需要準備什麼文件？",
+      ],
+    },
+    {
+      title: "車主本人",
+      color: "bg-green-100",
+      points: ["即時查詢與服務", "簡化流程"],
+      questions: [
+        "我的車號是ABC-123，下一次檢查時間為何時？",
+        "如果我的車排放不合格，應該去哪裡修理？",
+      ],
+    },
+    {
+      title: "合作廠商",
+      color: "bg-blue-100",
+      points: ["提高服務效率", "提升顧客服務體驗"],
+      questions: [
+        "幫我更改車號ABC-123機車的定檢站",
+        "能提供有關某一型號車輛的檢驗結果報告嗎？",
+      ],
+    },
+  ];
+
+  return (
+    <div className="p-8 bg-gradient-to-r from-gray-50 to-gray-200">
+      <h1 className="text-3xl font-bold text-center mb-8">學習成效 - LLM機車定檢</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {sections.map((section, index) => (
+          <motion.div
+            key={index}
+            className={`rounded-xl shadow-lg ${section.color} p-4`}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
+          >
+            <h2 className="text-xl font-semibold mb-4">{section.title}</h2>
+            <ul className="mb-4">
+              {section.points.map((point, i) => (
+                <li key={i} className="text-sm text-gray-700">- {point}</li>
+              ))}
+            </ul>
+            <div>
+              {section.questions.map((question, i) => (
+                <p
+                  key={i}
+                  className="text-sm bg-white p-2 rounded-lg shadow mb-2 text-gray-600"
+                >
+                  Q{i + 1}: {question}
+                </p>
+              ))}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default InspectionInfo;
